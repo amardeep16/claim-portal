@@ -1,0 +1,71 @@
+{
+  "users": [
+    {
+      "email": "amardeep.shinde47@gmail.com",
+      "password": "$2a$10$U7qCjLCZZu.qJ0W/Kr/4w.EnKqoOxctb7pFUlU7WlkePLGskKSD4K",
+      "name": "Amardeep Shinde",
+      "phone": "515555151",
+      "address": "latur",
+      "state": "",
+      "country": "",
+      "dob": "2021-04-28",
+      "pannumber": "6556555",
+      "id": 1
+    },
+    {
+      "email": "amardeep.shinde2@gmail.com",
+      "password": "$2a$10$yVQfg3EgdPdnU3egs3ZXJufhShOUIj61ofgBctM6iC7YUSUANISzG",
+      "name": "amardeep",
+      "phone": "",
+      "address": "",
+      "state": "",
+      "country": "",
+      "dob": "",
+      "pannumber": "",
+      "id": 2
+    },
+    {
+      "email": "amardeep.shinde713@gmail.com",
+      "password": "$2a$10$Vmz69hGPlvU7Q5I86gH3ruO127FTuJ3jMaJ0n5apXifLllh7A5eSa",
+      "name": "AMARDEEP",
+      "phone": "8600925600",
+      "address": "latur",
+      "state": "",
+      "country": "",
+      "dob": "1995-02-01",
+      "pannumber": "1515155",
+      "id": 3
+    },
+    {
+      "email": "amardeep.shinde77@gmail.com",
+      "password": "$2a$10$yaIkGauYww6vSEIFUfS/qu3VYjf5pUZyL2Mf6OfXgAIC/1epCI2/y",
+      "name": "AMARDEEP",
+      "phone": "8600925600",
+      "address": "latur",
+      "state": "",
+      "country": "",
+      "dob": "1995-03-02",
+      "pannumber": "LCLPS3607K",
+      "id": 4
+    },
+    {
+      "email": "amardeep.shinde1@gmail.com",
+      "password": "$2a$10$aUXPF0.yX.lEaEdU1anxl.7x.4g2FpYGf0itvKEWioUft.2ZEyfHu",
+      "name": "AMARDEEP",
+      "phone": "8600925600",
+      "address": "latur",
+      "state": "",
+      "country": "",
+      "dob": "1995-03-16",
+      "pannumber": "LCLPS3607K",
+      "age": "",
+      "id": 5
+    }
+  ]
+}
+
+{
+  "claimDetails": [
+
+  ]
+}
