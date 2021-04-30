@@ -11,6 +11,7 @@ import UpdateMember from './components/Member/UpdateMember';
 import ViewDetails from './components/Member/ViewDetails';
 import LoginForm from './components/Member/LoginForm';
 import ClaimForm from './components/Member/ClaimForm';
+import Footer from './components/Layout/Footer';
 
 function App() {
 
@@ -23,14 +24,16 @@ function App() {
           <Route exact path="/user/add" component={MemberRegister} />
           <Route exact path="/user/edit/:id" component={UpdateMember} />
           <Route exact path="/user/login" component={LoginForm} isLogin={true} />
-          <Route exact path="/SubmitClaim" component={SubmitClaim} />
+          <Route exact path="/submit-claim" component={SubmitClaim} />
           <Route exact path="/user/show/:id" component={ViewDetails} />
           <Route exact path="/add-claim" component={ClaimForm} />
 
           <Route component = {NotFound}></Route>
           <Redirect to="/"/>
         </Switch>
+        <Footer/>
       </BrowserRouter>
+      
     
     </>
   );

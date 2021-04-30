@@ -60,12 +60,71 @@
       "pannumber": "LCLPS3607K",
       "age": "",
       "id": 5
+    },
+    {
+      "email": "amardeep.shinde001@gmail.com",
+      "password": "$2a$10$YAf68FvBCu5ijghNlC21XuGClGL/g1Yc2gmeGI3SYes/YrAu6MYqy",
+      "name": "AMARDEEP SHINDE",
+      "phone": "8600925600",
+      "address": "",
+      "state": "",
+      "country": "",
+      "dob": "1993-02-28",
+      "pannumber": "LCLPS3607K",
+      "age": "",
+      "id": "1b51ee43-b843-4664-b337-b9bef606bd33"
+    },
+    {
+      "email": "amardeep.shinde71@gmail.com",
+      "password": "$2a$10$nN.xbEcoAH1MgJVzY89GlexLz96fBTs1Xq0UweLCkBBKayvGOPdky",
+      "name": "SHINDE",
+      "phone": "8600925600",
+      "address": "latur",
+      "state": "",
+      "country": "",
+      "dob": "1995-03-02",
+      "pannumber": "LCLPS3607K",
+      "age": "",
+      "id": "64c67694-b5b9-47f3-b8dd-202a752f6dd9"
+    },
+    {
+      "email": "amardeep.shinde7@gmail.com",
+      "password": "$2a$10$XgUAbeWAioiES0/utnDwpO/.eLuokw4d3i3/QhVOAkBHEWKY8AnQu",
+      "name": "AM",
+      "phone": "8600925600",
+      "address": "latur",
+      "state": "Maharashtra",
+      "country": "India",
+      "dob": "1995-02-02",
+      "pannumber": "LCLPS3607K",
+      "age": "",
+      "id": "38fc457c-98a4-4917-bde6-9ff38f2657a4"
+    },
+    {
+      "email": "amardeep.shinde7103@gmail.com",
+      "password": "$2a$10$ukbgEmTMQ1j6dx0nR2mIsumEdZVGmRK2G0Z0PgtQ9aZ/AAm3SlxQG",
+      "name": "AMAR",
+      "phone": "8600925600",
+      "address": "latur",
+      "state": "Maharashtra",
+      "country": "India",
+      "dob": "1995-03-03",
+      "pannumber": "LCLPS3607K",
+      "age": "",
+      "id": "25f93b11-b131-4f73-8ee7-4e5291028bc7"
+    },
+    {
+      "email": "amardeep.shinde00@gmail.com",
+      "password": "$2a$10$S.FbYEo0Vhwqdbpskd6iTuWO4NB24/5wcvPSC0R.iZkgfvXohcvAu",
+      "name": "AMARDEEP SHINDE",
+      "phone": "8600925600",
+      "address": "Pune",
+      "state": "Maharashtra",
+      "country": "India",
+      "dob": "1995-03-02",
+      "pannumber": "LCLPS3607K",
+      "age": 0,
+      "id": "afd9403b-9ff4-4f8f-abed-6740578608a4"
     }
-  ]
-}
-
-{
-  "claimDetails": [
-
   ]
 }

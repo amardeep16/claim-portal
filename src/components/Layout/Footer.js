@@ -4,8 +4,8 @@ import React from 'react';
 const Footer = () => {
     return(
         <>
-        <footer className="w-100 bg-light text-center">
-            <p>@ 2021 </p>
+        <footer className="  text-center footer">
+            <span className="text-muted">@ 2021 </span>
         </footer>
         </>
     )

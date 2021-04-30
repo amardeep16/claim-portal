@@ -12,7 +12,7 @@ export default function Home() {
 
   const loadUsers = async () => {
     const result = await axios.get("http://localhost:3003/users");
-    setUser(result.data);
+    setUser(result.data.reverse());
     console.log(result);
   };
 
@@ -26,8 +26,6 @@ export default function Home() {
               <th scope="col">Sr</th>
               <th scope="col">Name</th>
               <th scope="col">Email</th>
-              <th scope="col">Phone</th>
-              <th scope="col">Pan Number</th>
             </tr>
           </thead>
 

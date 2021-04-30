@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { useHistory } from "react-router-dom";
-import CountryRegion from "./CountryRegion";
 import axios from "axios";
-
+import { v4 as uuid } from "uuid";
+import {
+  CountryDropdown,
+  RegionDropdown,
+  CountryRegionData,
+} from "react-country-region-selector";
 
 export default function MemberRegister() {
   let history = useHistory();
@@ -24,10 +28,9 @@ export default function MemberRegister() {
     country: "",
     dob: "",
     pannumber: "",
-    age: ""
+    age: "",
+    id: uuid(),
   });
-
-  
 
   const {
     name,
@@ -39,42 +42,55 @@ export default function MemberRegister() {
     country,
     dob,
     pannumber,
-    age
+    age,
   } = user;
+
+  const selectCountry = (e) => {
+    setUser({...user, country: e});
+
+  };
+
+  const selectState = (e) => {
+    setUser({...user, state: e});
+  }
 
   const onInputChange = (e) => {
     //  console.log(e.target.value);
     setUser({ ...user, [e.target.name]: e.target.value });
+   
   };
 
   const ageValidation = (dob) => {
     dob.replace(/-/g, "/");
     let myBirthday = new Date(dob);
-    let currentDate = new Date().toJSON().slice(0,10)+' 01:00:00';
-    let age = ~~((Date.now(currentDate) - myBirthday) / (31557600000));
-    setUser({age: age});
+    let currentDate = new Date().toJSON().slice(0, 10) + " 01:00:00";
+    let age = ~~((Date.now(currentDate) - myBirthday) / 31557600000);
+    setUser({ ...user, age: age });
     return age;
   };
 
-  const handleValidation = (e) => {
-    debugger
+  useEffect(() => {
+    ageValidation(user.dob);
     
+  }, []);
+
+  const handleValidation = (e) => {
     const nameError = {};
     const emailError = {};
     const phoneError = {};
     const dobError = {};
-    const  pancardError= {};
+    const pancardError = {};
     let formIsValid = true;
 
+    //user name validation
     if (user.name.trim() === "") {
       nameError.requiredError = "This Field is Required!!";
       formIsValid = false;
     }
 
-    if(!user.name.match(/^[A-Z]+$/)){
+    if (!user.name.match(/^[A-Z]+$/) && !user.name.trim() === "") {
       nameError.formatError = " Name Shoud be only in capital Letter";
       formIsValid = false;
-
     }
 
     setNameError(nameError);
@@ -95,31 +111,31 @@ export default function MemberRegister() {
         )
       ) {
         emailError.validEmail = " Please Enter Valid Email !!";
+        formIsValid = false;
         setEmailError(emailError);
       }
     }
-
 
     // contact number validation
     if (user.phone.trim().length < 10) {
       phoneError.lengthError = "Phone Number Must be 10 Digit !!";
       formIsValid = false;
-      setPhoneError(phoneError)
+      setPhoneError(phoneError);
     }
 
     //pancard validation
-    if(!user.pannumber.match(/^[A-Z]{5}[0-9]{4}[A-Z]{1}/)){
-      pancardError.formatError = " PleaseEnter Valid PAN !!";
+    if (!user.pannumber.match(/^[A-Z]{5}[0-9]{4}[A-Z]{1}/)) {
+      pancardError.formatError = " Please Enter Valid PAN !!";
       formIsValid = false;
       setPanCardError(pancardError);
     }
 
     //age Validation
-   if(ageValidation(user.dob) < 18 ) {
-     dobError.age = " User DOB is must be greater than 18 !!";
-     setDobError(dobError);
-   } 
-
+    if (ageValidation(user.dob) < 18) {
+      dobError.age = " User DOB is must be greater than 18 yr !!";
+      setDobError(dobError);
+      
+    }
 
     return formIsValid;
   };
@@ -133,6 +149,8 @@ export default function MemberRegister() {
     history.push("/user/login");
   };
 
+  
+
   return (
     <div>
       <form onSubmit={(e) => onSubmit(e)}>
@@ -144,10 +162,11 @@ export default function MemberRegister() {
             name="name"
             value={name}
             onChange={(e) => onInputChange(e)}
-          /><br/>
+          />
+          <br />
           <div>
             {Object.keys(nameError).map((key) => {
-               return <span style={{ color: "red" }}>{nameError[key]}</span>
+              return <span style={{ color: "red" }}>{nameError[key]}</span>;
             })}
           </div>
         </div>
@@ -162,10 +181,11 @@ export default function MemberRegister() {
             value={email}
             name="email"
             onChange={(e) => onInputChange(e)}
-          /><br/>
-           <div>
+          />
+          <br />
+          <div>
             {Object.keys(emailError).map((key) => {
-               return <span style={{ color: "red" }}>{emailError[key]}</span>
+              return <span style={{ color: "red" }}>{emailError[key]}</span>;
             })}
           </div>
         </div>
@@ -196,12 +216,14 @@ export default function MemberRegister() {
           />
         </div>
 
-        <CountryRegion
-          id="country"
-          name="country"
-          value={country}
-          onChange={(e) => onInputChange(e)}
-        />
+        <div>
+          <CountryDropdown value={country} onChange={(e) => selectCountry(e)} />
+          <RegionDropdown
+            country={country}
+            value={state}
+            onChange={(e) => selectState(e)}
+          />
+        </div>
         <br />
 
         <div className="mb-3">
@@ -215,10 +237,11 @@ export default function MemberRegister() {
             name="dob"
             value={dob}
             onChange={(e) => onInputChange(e)}
-          /><br/>
-            <div>
+          />
+          <br />
+          <div>
             {Object.keys(dobError).map((key) => {
-               return <span style={{ color: "red" }}>{dobError[key]}</span>
+              return <span style={{ color: "red" }}>{dobError[key]}</span>;
             })}
           </div>
         </div>
@@ -231,10 +254,11 @@ export default function MemberRegister() {
             name="phone"
             value={phone}
             onChange={(e) => onInputChange(e)}
-          /><br/>
-            <div>
+          />
+          <br />
+          <div>
             {Object.keys(phoneError).map((key) => {
-               return <span style={{ color: "red" }}>{phoneError[key]}</span>
+              return <span style={{ color: "red" }}>{phoneError[key]}</span>;
             })}
           </div>
         </div>
@@ -247,10 +271,11 @@ export default function MemberRegister() {
             name="pannumber"
             value={pannumber}
             onChange={(e) => onInputChange(e)}
-          /><br/>
-            <div>
+          />
+          <br />
+          <div>
             {Object.keys(pancardError).map((key) => {
-               return <span style={{ color: "red" }}>{pancardError[key]}</span>
+              return <span style={{ color: "red" }}>{pancardError[key]}</span>;
             })}
           </div>
         </div>
