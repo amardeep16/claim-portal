@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-export default function SubmitClaim() {
-    return (
-        <div>
-            <h1>Welcome</h1>
-            <Link className="btn btn-outline-primary mr-2 "  to={`/add-claim`}>Submit Claim</Link>
-        </div>
-    )
+export default function SubmitClaim(props) {
+  const location = useLocation();
+
+  const[email, setEmail] = useState("");
+
+  useEffect(() => {
+    setEmail(location.state.email);
+    console.log(location.state.email);
+  }, [location]);
+
+
+  return (
+    <div>
+      <h4>Welcome <br/>{email}</h4>
+      <Link className="btn btn-outline-primary mr-2 " to={`/add-claim`}>
+        Submit Claim
+      </Link>
+    </div>
+  );
 }
