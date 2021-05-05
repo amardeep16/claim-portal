@@ -115,16 +115,29 @@
     },
     {
       "email": "amardeep.shinde00@gmail.com",
-      "password": "$2a$10$S.FbYEo0Vhwqdbpskd6iTuWO4NB24/5wcvPSC0R.iZkgfvXohcvAu",
+      "password": "$2a$10$sckRIDg7etKk08sWYFusWeEYJhaaQBNEv2T4rX7CVJCDvoIZ1U19.",
       "name": "AMARDEEP SHINDE",
       "phone": "8600925600",
       "address": "Pune",
-      "state": "Maharashtra",
+      "state": "Arunachal Pradesh",
       "country": "India",
       "dob": "1995-03-02",
       "pannumber": "LCLPS3607K",
       "age": 0,
       "id": "afd9403b-9ff4-4f8f-abed-6740578608a4"
+    },
+    {
+      "email": "amardeep.shinde444@gmail",
+      "password": "$2a$10$H888tU2SfickQyIbSKR71eMFmQ7GOto5qU2/jiCwMS9rprPew5k3S",
+      "name": "AMAR",
+      "phone": "",
+      "address": "latur",
+      "state": "",
+      "country": "",
+      "dob": "",
+      "pannumber": "",
+      "age": 0,
+      "id": "8e05bdf5-d0df-40b9-ad39-6de46bbac485"
     }
   ]
 }
