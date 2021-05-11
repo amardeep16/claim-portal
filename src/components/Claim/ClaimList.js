@@ -14,7 +14,8 @@ const ClaimList = () => {
   }, []);
 
   const loadClaimList = async () => {
-    var url = `http://localhost:4000/claimList/?birthdate=${storeactiveUserDetail.birthdate}&memberName=${storeactiveUserDetail.memberName}`;
+
+    var url = `http://localhost:9002/claims/${storeactiveUserDetail.userID}}`;
     var response = await axios.get(url);
 
     console.log("responseList: ", response.data);

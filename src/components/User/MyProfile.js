@@ -35,9 +35,10 @@ const Myprofile = ({}) => {
     address,
     pan,
     birthdate,
-    id,
+    userID,
     password,
   } = currentMember;
+
 
   const updateMember = () => {
     let ifFormValid = formValidation();
@@ -45,11 +46,11 @@ const Myprofile = ({}) => {
     if (ifFormValid === true) {
       setEditToggle(false);
       axios.put(
-        `http://localhost:4000/members/${currentMember.id}`,
+        `http://localhost:9001/users/edit/${currentMember.userID}`,
         currentMember
       );
       cookieService.createCookie("activeUserDetail", currentMember);
-      addToast(`Member updated Successfully : ${currentMember.id}`, {
+      addToast(`Member updated Successfully : ${userID}`, {
         appearance: "success",
       });
       history.push("/profile");
@@ -83,10 +84,6 @@ const Myprofile = ({}) => {
 
     if (currentMember.memberName.trim().length === 0) {
       nameError.nameRequired = "Name is required";
-      isValid = false;
-    }
-    if (currentMember.memberName.match(/^[A-Z]+$/)) {
-      nameError.formatCapital = "Name should be in capital letters";
       isValid = false;
     }
 
@@ -169,13 +166,6 @@ const Myprofile = ({}) => {
               name="memberName"
               onChange={onInputChange}
             />
-            {Object.keys(nameError).map((key) => {
-              return (
-                <div key={key} style={{ color: "red" }}>
-                  {nameError[key]}
-                </div>
-              );
-            })}
           </div>
           <div className="col-6">
             <label>Email:</label>
@@ -238,6 +228,7 @@ const Myprofile = ({}) => {
             <label>DOB:</label>
             <input
               className="form-control"
+              type="date"
               disabled={!editToggle}
               value={birthdate}
               name="birthdate"

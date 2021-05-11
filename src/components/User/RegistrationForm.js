@@ -19,22 +19,9 @@ const RegistrationForm = () => {
     pan: "",
     birthdate: "",
     password: "",
-    id: uuid(),
+    userID: uuid(),
     age: "",
   });
-
-  const [nameError, setNameError] = useState({});
-  const [emailError, setEmailError] = useState({});
-  const [contactError, setContactError] = useState({});
-  const [countryError, setCountryError] = useState({});
-  const [stateError, setStateError] = useState({});
-  const [addressError, setAddressError] = useState({});
-  const [panError, setPanError] = useState({});
-  const [dobError, setDOBError] = useState({});
-
-  const onInputChange = (e) => {
-    setUserInput({ ...userInput, [e.target.name]: e.target.value });
-  };
 
   const {
     memberName,
@@ -46,29 +33,30 @@ const RegistrationForm = () => {
     contact,
     birthdate,
     password,
-    id,
+    userID,
     age,
   } = userInput;
+
+
+  const [nameError, setNameError] = useState({});
+  const [emailError, setEmailError] = useState({});
+  const [contactError, setContactError] = useState({});
+  const [countryError, setCountryError] = useState({});
+  const [stateError, setStateError] = useState({});
+  const [addressError, setAddressError] = useState({});
+  const [panError, setPanError] = useState({});
+  const [dobError, setDOBError] = useState({});
+
+  useEffect(() => {
+    console.log(ageValidation(userInput.birthdate));
+
+  }, []);
 
   const selectCountry = (input) => {
     setUserInput({ ...userInput, country: input });
   };
   const selectState = (input) => {
     setUserInput({ ...userInput, state: input });
-  };
-
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    const isFormValid = formValidation();
-    if (isFormValid) {
-      setTimeout(function () {
-        axios.post("http://localhost:4000/members", userInput);
-        addToast(`Member added successfully : ${userInput.id}`, {
-          appearance: "success",
-        });
-        history.push("/");
-      }, 1500);
-    }
   };
 
   const ValidateEmail = (mail) => {
@@ -85,18 +73,13 @@ const RegistrationForm = () => {
 
   //age validation and calcution
   const ageValidation = (dob) => {
-    // dob.replace(/-/g, "/");
+    dob.replace(/-/g, "/");
     let birthdate = new Date(dob);
     let currentDate = new Date().toJSON().slice(0, 10) + " 01:00:00";
     let age = ~~((Date.now(currentDate) - birthdate) / 31557600000);
     setUserInput({ ...userInput, age: age });
     return age;
   };
-
-
-  useEffect(() => {
-    ageValidation(userInput.birthdate);
-  }, []);
 
   const formValidation = () => {
     const nameError = {};
@@ -116,10 +99,13 @@ const RegistrationForm = () => {
       nameError.nameRequired = "Name is required";
       isFormValid = false;
     }
-    if ( !userInput.memberName.match(/^[A-Z]+$/) && !userInput.memberName.trim() === "" ) {
+
+    if ( !userInput.memberName.match(/^[A-Z]+$/) && !userInput.memberName.trim().length == 0 ) {
       nameError.formatCapital = "Name should be in capital letters";
       isFormValid = false;
     }
+
+    //email Validation
 
     if (userInput.memberEmail === "") {
       emailError.emptyEmail = "Email is required";
@@ -134,19 +120,26 @@ const RegistrationForm = () => {
       isFormValid = false;
     }
 
+    //pancard validation
+
     if (!userInput.pan.match(/^[A-Z]{5}[0-9]{4}[A-Z]{1}/)) {
       panError.formatError = " Please enter Valid PAN !";
       isFormValid = false;
     }
 
+    //phone number validation
+
     if (!userInput.contact.match(/^\d{10}$/)) {
       contactError.lengthError = "Phone Number Must be 10 Digit !!";
       isFormValid = false;
     }
+
+    //country validation
     if (userInput.country === "") {
       countryError.countryRequired = "Country is required";
       isFormValid = false;
     }
+    // state validation
     if (userInput.state === "") {
       stateError.stateRequired = "State is required";
       isFormValid = false;
@@ -159,8 +152,12 @@ const RegistrationForm = () => {
     }
 
     //age Validation
-    if (userInput.birthdate.trim()=== '') {
-      dobError.age = "This Field is required";
+    if (userInput.birthdate.trim()=== '' ) {
+      dobError.empty = "This Field is required";
+    }
+
+    if(ageValidation(userInput.birthdate) < 18 && !userInput.birthdate.length == 0) {
+      dobError.age = " User DOB is must be greater than 18 yr !!";
     }
 
     setNameError(nameError);
@@ -174,6 +171,26 @@ const RegistrationForm = () => {
 
     return isFormValid;
   };
+
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const isFormValid = formValidation();
+    if (isFormValid) {
+      setTimeout(function () {
+        axios.post("http://localhost:9001/users/add", userInput);
+        addToast(`Member added successfully : ${userInput.userID}`, {
+          appearance: "success",
+        });
+        history.push("/");
+      }, 1500);
+    }
+  };
+
+  const onInputChange = (e) => {
+    setUserInput({ ...userInput, [e.target.name]: e.target.value });
+  };
+
 
   return (
     <>

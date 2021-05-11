@@ -19,6 +19,7 @@ const AddClaim = () => {
     storeactiveUserDetail
   );
   const [userInput, setUserInput] = useState({
+
     dateOfDischarge: "",
     dateOfAdmission: "",
     provider: "",
@@ -70,9 +71,10 @@ const AddClaim = () => {
       ...userInput,
       memberName: activeUserDetail.memberName,
       birthdate: activeUserDetail.birthdate,
+      userID: activeUserDetail.userID
     };
 
-    axios.post(`http://localhost:4000/claimList`, claimDetail);
+    axios.post(`http://localhost:9000/claims/addClaim`, claimDetail);
     setTimeout(function () {
       addToast(`Claim added Successfully : ${userInput.claimId}`, {
         appearance: "success",

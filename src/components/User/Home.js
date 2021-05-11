@@ -1,10 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import {  useLocation } from 'react-router-dom'
 
-export default function Home({userDetail}) {
+export default function Home({}) {
 
-  const toUpper = (name) => {
-    return name ? name.toUpperCase() : "UNKNOWN";
-  };
 
   return (
     <div>

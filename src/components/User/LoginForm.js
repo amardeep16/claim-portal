@@ -22,7 +22,7 @@ export default function LoginForm({ successLogin }) {
 
     if (state.memberEmail.trim() === "") {
       {
-        userNameError.validName = " Please Enter Valid User Name!!";
+        userNameError.validName = " Please Enter Valid Email!!";
 
         setUserNameError(userNameError);
       }
@@ -44,14 +44,23 @@ export default function LoginForm({ successLogin }) {
     const memberEmail = state.memberEmail;
     const password = state.password;
 
-    var url = `http://localhost:4000/members/?memberEmail=${memberEmail}&password=${password}`;
-    let response = await axios.get(url);
-debugger
+    var url = `http://localhost:9001/users/login`;
+    let response = await axios.post(url, {
+      memberEmail: memberEmail,
+      password: password
+    });
+    debugger
+    console.log(response);
+
     if (Object.keys(response.data).length) {
-      successLogin(response.data[0]);
-      history.push("/home");
+      successLogin(response.data);
+      history.push({
+        pathname: "/home",
+        state:{details: response.data}
+      });
     }
   };
+
   const registerHandler = () => {
     history.push("/member/add");
   };
@@ -74,6 +83,11 @@ debugger
             setState({ ...state, memberEmail: e.target.value });
           }}
         />
+          <div>
+          {Object.keys(userNameError).map((key) => {
+            return <span style={{ color: "red" }}>{userNameError[key]}</span>;
+          })}
+        </div>
 
         <label className="form-label">Password</label>
         <input
@@ -91,6 +105,7 @@ debugger
             return <span style={{ color: "red" }}>{passwordError[key]}</span>;
           })}
         </div>
+        <br/>
 
         <div className="row">
           <div className="col-2">
