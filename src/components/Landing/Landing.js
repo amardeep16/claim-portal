@@ -3,7 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import MemberRegistrationForm from "../User/RegistrationForm";
 import LoginForm from "../User/LoginForm";
-import Navbar from "../Layout/Navbar";
+import Navbar from "../Layout/NavBar";
 import { CookiesHelper } from "../helper/CookiesHelper";
 import Home from "../User/Home";
 import ClaimList from "../Claim/ClaimList";
@@ -46,7 +46,7 @@ function Landing() {
 
       <Router>
         <Switch>
-          <Route path="/home" component={Home} userDetail={state.activeUserDetail, user} />
+          <Route path="/home" component={Home}  />
           <Route path="/claim/list" component={ClaimList} />
           <Route path="/claim/add" component={AddClaim} />
           <Route path="/member/add" component={MemberRegistrationForm} />
