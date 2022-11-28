@@ -46,7 +46,7 @@ function Landing() {
 
       <Router>
         <Switch>
-          <Route path="/home" component={Home}  />
+          <Route path="/home" component={Home} userDetail={state.activeUserDetail, user} />
           <Route path="/claim/list" component={ClaimList} />
           <Route path="/claim/add" component={AddClaim} />
           <Route path="/member/add" component={MemberRegistrationForm} />
